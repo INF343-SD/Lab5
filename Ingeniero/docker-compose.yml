@@ -1,0 +1,9 @@
+---
+
+services:
+  server:
+    build:
+      context: ../
+      dockerfile: ./Ingeniero/Dockerfile
+    ports:
+      - "5003:5003"

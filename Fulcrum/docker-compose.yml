@@ -1,0 +1,9 @@
+---
+
+services:
+  server:
+    build:
+      context: ../
+      dockerfile: ./Fulcrum/Dockerfile
+    ports:
+      - "5001:5001"

@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package broker;
+
+option go_package = "./Broker";
+
+
+message Kais_Broker{
+    string sector = 1;
+    string base = 2;
+}
+
+message Broker_Kais{
+    string direccion = 1;
+}
+
+message Kais_Fulcrum{
+    string sector = 1;
+    string base = 2;
+}
+
+message Fulcrum_Kais{
+    int32 cant_enemigos = 1;
+    string reloj = 2;
+}
+
+message Ing_Broker_AgregarBase{
+    string sector = 1;
+    string base = 2;
+    int32 valor = 3;
+}
+
+// Este mensaje sirve para todas las comunicaciones Broker-Ingeniero
+message Broker_Ing{
+    string direccion = 1;
+}
+
+message Ing_Fulcrum_AgregarBase{
+    string sector = 1;
+    string base = 2;
+    int32 valor = 3;
+}
+
+// Este mensaje sirve para todas las comunicaciones Fulcrum-Ingeniero
+message Fulcrum_Ing{
+    string reloj = 1;
+}
+
+message Ing_Broker_RenombrarBase{
+    string sector = 1;
+    string base = 2;
+    string nuevo_nombre = 3;
+}
+
+message Ing_Fulcrum_RenombrarBase{
+    string sector = 1;
+    string base = 2;
+    string nuevo_nombre = 3;
+}
+
+message Ing_Broker_ActualizarValor{
+    string sector = 1;
+    string base = 2;
+    int32 nuevo_valor = 3;
+}
+
+message Ing_Fulcrum_ActualizarValor{
+    string sector = 1;
+    string base = 2;
+    int32 nuevo_valor = 3;
+}
+
+message Ing_Broker_BorrarBase{
+    string sector = 1;
+    string base = 2;
+}
+
+message Ing_Fulcrum_BorrarBase{
+    string sector = 1;
+    string base = 2;
+}
+
+
+//Servicio para llevar a cabo
+service Laboratorio_5{
+    rpc Agregar_Base_Broker(Ing_Broker_AgregarBase) returns (Broker_Ing);
+    rpc Agregar_Base_Fulcrum(Ing_Fulcrum_AgregarBase) returns (Fulcrum_Ing);
+    rpc Renombrar_Base_Broker(Ing_Broker_RenombrarBase) returns (Broker_Ing);
+    rpc Renombrar_Base_Fulcrum(Ing_Fulcrum_RenombrarBase) returns (Fulcrum_Ing);
+    rpc Actualizar_Valor_Broker(Ing_Broker_ActualizarValor) returns (Broker_Ing);
+    rpc Actualizar_Valor_Fulcrum(Ing_Fulcrum_ActualizarValor) returns (Fulcrum_Ing);
+    rpc Borrar_Base_Broker(Ing_Broker_BorrarBase) returns (Broker_Ing);
+    rpc Borrar_Base_Fulcrum(Ing_Fulcrum_BorrarBase) returns (Fulcrum_Ing);
+    rpc GetEnemigos_Broker(Kais_Broker) returns (Broker_Kais);
+    rpc GetEnemigos_Fulcrum(Kais_Fulcrum) returns (Fulcrum_Kais);
+}
+

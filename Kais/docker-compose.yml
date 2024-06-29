@@ -1,0 +1,9 @@
+---
+
+services:
+  server:
+    build:
+      context: ../
+      dockerfile: ./Kais/Dockerfile
+    ports:
+      - "5002:5002"
